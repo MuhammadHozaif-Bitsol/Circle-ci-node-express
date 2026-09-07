@@ -15,11 +15,14 @@ jobs:
 
   deploy:
     docker:
-      - image: cimg/base:current
+      - image: cimg/node:20.11
     steps:
+      - checkout
       - run:
-          name: Trigger Railway Deploy Hook
-          command: curl -X POST "$RAILWAY_DEPLOY_HOOK"
+          name: Install Railway CLI and Deploy
+          command: |
+            npm install -g @railway/cli
+            railway up --detach -s Circle-ci-node-express
 
 workflows:
   version: 2
