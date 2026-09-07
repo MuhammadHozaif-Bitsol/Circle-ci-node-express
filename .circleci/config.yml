@@ -19,10 +19,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Railway CLI and Deploy
-          command: |
-            npm install -g @railway/cli
-            railway up --detach -s Circle-ci-node-express
+          name: Deploy via Railway CLI
+          command: npx @railway/cli up --detach -s Circle-ci-node-express
 
 workflows:
   version: 2
