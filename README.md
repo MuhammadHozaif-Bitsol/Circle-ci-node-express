@@ -9,7 +9,7 @@ A minimal Node.js REST API built with Express, featuring automated route testing
 - Lightweight HTTP API built with Express.
 - Automated testing suite using Jest and Supertest.
 - Ready-to-use CircleCI pipeline configuration (`.circleci/config.yml`).
-- Automatic CD trigger support via deployment webhooks (e.g., Render).
+- Automatic CD trigger support via deployment webhooks (Railway).
 
 ---
 
@@ -23,12 +23,6 @@ A minimal Node.js REST API built with Express, featuring automated route testing
 ## Getting Started
 
 ### 1. Clone the repository
-
-```bash
-git clone https://github.com/<YOUR_USERNAME>/circle-ci-node.git
-cd circle-ci-node
-
-```
 
 ### 2. Install dependencies
 
@@ -74,12 +68,15 @@ npm test
 The CI workflow defined in `.circleci/config.yml` runs on every push:
 
 1. **Test Job:** Spins up a Node.js Docker container, runs `npm ci`, and executes `npm test`.
-2. **Deploy Job:** Triggers automatically upon successful test completion on the `main` branch by invoking the deployment webhook (`$RENDER_DEPLOY_HOOK`).
+2. **Deploy Job:** Triggers automatically upon successful test completion on the `main` branch by calling the Railway deploy webhook (`$RAILWAY_DEPLOY_HOOK`).
 
 ### Setting up CircleCI Environment Variables
 
 To enable automated deployments:
 
-1. Navigate to your project on the CircleCI dashboard.
-2. Go to **Project Settings** > **Environment Variables**.
-3. Add `RENDER_DEPLOY_HOOK` containing your hosting service deploy hook URL.
+1. In your **Railway** project dashboard, go to your service > **Settings** > **Deploy Triggers** (or **Deploy Webhook**) and copy your webhook URL.
+2. Navigate to your project on the **CircleCI** dashboard.
+3. Go to **Project Settings** > **Environment Variables**.
+4. Add `RAILWAY_DEPLOY_HOOK` and paste the webhook URL from Railway.
+
+---

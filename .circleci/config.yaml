@@ -18,8 +18,8 @@ jobs:
       - image: cimg/base:current
     steps:
       - run:
-          name: Trigger Render Deploy Hook
-          command: curl -X POST "$RENDER_DEPLOY_HOOK"
+          name: Trigger Railway Deploy Hook
+          command: curl -X POST "$RAILWAY_DEPLOY_HOOK"
 
 workflows:
   version: 2
